@@ -1,0 +1,22 @@
+[package]
+name = "hinagen"
+version = "0.1.0"
+authors = ["Chun-Kwong Wong <chunkwong.wong@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies.gtk]
+version = "0.8.0"
+features = ["v3_16"]
+
+[dependencies.gio]
+version = ""
+features = ["v2_44"]
+
+[dependencies.hinafont]
+version = "0.4.0"
+git = "https://github.com/shinkou/hinafont"
+
+[dependencies]
+glib = "^0"

@@ -6,7 +6,7 @@ library.
 ## How to Run
 
 Check out this repository with git clone.  Then change to the top level
-directory of this repository and issue the following command to compile:
+directory of this repository and issue the following command to run:
 
 ```
 $ cargo run

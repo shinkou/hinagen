@@ -1,5 +1,5 @@
 /*
- *  Hinafont - ASCII font arts library
+ *  Hinagen - ASCII arts generator using Hinafont
  *  Copyright (C) 2020  Chun-Kwong Wong
  *  chunkwong.wong@gmail.com
  *  https://github.com/shinkou/hinagen

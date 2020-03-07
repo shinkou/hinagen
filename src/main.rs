@@ -75,16 +75,13 @@ fn main()
 
 		let conv_text = |e: gtk::Entry, tv: gtk::TextView|
 		{
-			if let Some(gs) = e.get_text()
+			if let (Some(gs), Some(buf)) = (e.get_text(), tv.get_buffer())
 			{
-				if let Some(buf) = tv.get_buffer()
-				{
-					buf.insert
-					(
-						&mut buf.get_end_iter()
-						, &hinafont::conv(gs.as_ref())
-					);
-				}
+				buf.insert
+				(
+					&mut buf.get_end_iter()
+					, &hinafont::conv(gs.as_ref())
+				);
 			}
 			e.set_text("");
 			e.grab_focus_without_selecting();

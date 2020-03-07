@@ -30,7 +30,7 @@ fn main()
 {
 	let application = gtk::Application::new
 	(
-		Some("com.github.gtk-rs.examples.basic")
+		Some("com.github.shinkou.hinagen")
 		, Default::default()
 	).expect("Failed to initialize GTK application");
 
@@ -75,18 +75,16 @@ fn main()
 
 		let conv_text = |e: gtk::Entry, tv: gtk::TextView|
 		{
-			match e.get_text()
+			if let Some(gs) = e.get_text()
 			{
-				Some(gs) => match tv.get_buffer()
+				if let Some(buf) = tv.get_buffer()
 				{
-					Some(buf) => buf.insert
+					buf.insert
 					(
 						&mut buf.get_end_iter()
 						, &hinafont::conv(gs.as_ref())
-					)
-					, None => ()
+					);
 				}
-				, None => ()
 			}
 			e.set_text("");
 			e.grab_focus_without_selecting();
@@ -95,40 +93,30 @@ fn main()
 		let reset_bufs = |e: gtk::Entry, tv: gtk::TextView|
 		{
 			e.set_text("");
-			match tv.get_buffer()
+			if let Some(buf) = tv.get_buffer()
 			{
-				Some(buf) => buf.set_text("")
-				, None => ()
+				buf.set_text("");
 			}
 			e.grab_focus_without_selecting();
 		};
 
 		entry1.connect_activate
-		(
-			clone!
-			(
-				@weak entry1, @weak tview1
-					=> move |_| conv_text(entry1, tview1)
-			)
-		);
+		(clone!(
+			@weak entry1, @weak tview1
+				=> move |_| conv_text(entry1, tview1)
+		));
 
 		button1.connect_clicked
-		(
-			clone!
-			(
-				@weak entry1, @weak tview1
-					=> move |_| conv_text(entry1, tview1)
-			)
-		);
+		(clone!(
+			@weak entry1, @weak tview1
+				=> move |_| conv_text(entry1, tview1)
+		));
 
 		button2.connect_clicked
-		(
-			clone!
-			(
-				@weak entry1, @weak tview1
-					=> move |_| reset_bufs(entry1, tview1)
-			)
-		);
+		(clone!(
+			@weak entry1, @weak tview1
+				=> move |_| reset_bufs(entry1, tview1)
+		));
 	});
 
 	application.run(&[]);

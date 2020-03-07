@@ -82,6 +82,10 @@ fn main()
 					&mut buf.get_end_iter()
 					, &hinafont::conv(gs.as_ref())
 				);
+				if let Some(mark) = buf.get_mark("insert")
+				{
+					tv.scroll_mark_onscreen(&mark);
+				}
 			}
 			e.set_text("");
 			e.grab_focus_without_selecting();
